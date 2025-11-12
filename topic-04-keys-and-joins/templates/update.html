@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Update Pet</title>
+</head>
+<body>
+    <h2>Update Pet Information</h2>
+    <form action="/update/{{ data['id'] }}" method="post">
+
+        <hr/>
+        <p>Animal Name:
+            <input name="name" value="{{ data['name'] }}" required>
+        </p>
+        <p>Age:
+            <input name="age" type="number" value="{{ data['age'] }}" min="0" required>
+        </p>
+        <p>Kind:
+            <select name="kind_id">
+                {% for kind in kinds %}
+                    <option value="{{ kind['id'] }}" 
+                        {% if kind['id'] == data['kind_id'] %}selected{% endif %}>
+                        {{ kind['name'] }}
+                    </option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>Owner:
+            <input name="owner" value="{{ data['owner'] }}">
+        </p>
+        <hr/>
+        <button type="submit">Update</button>
+        <a href="/list">Cancel</a>
+        <hr/>
+    </form>
+</body>
+</html>
